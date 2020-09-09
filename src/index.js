@@ -1,185 +1,109 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Board from './board.js'
+import Board from './board'
+import {calculateWinner, getRowWin, isFillList, getPosition} from './helpers'
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      	positionX: 0,
-      	positionY: 0
-      }],
-      stepNumber: 0,
-      xIsNext: true,
-    };
+// ========================================
 
+const Game = () => {
+  const squares = [{squares:Array(9).fill(null), position: {}}]
+  const currentStatus = {letter: true, history:squares, stepMove:0}
 
-  } 
+  const [current, setCurrent] = useState()
+  const [state, setState] = useState(currentStatus)
+  const [info, setInfo] = useState({})
 
-  handleClick(i) {
-    
-
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);    
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    const positionX = parseInt((i/3), 10) + 1
-    const positionY = setPositionY(i)
-    if (calculateWinner(squares) || squares[i]) {
-      return;
+  useEffect(() => {
+    const history = state.history
+    const current = history[state.stepMove].squares
+    const winner = calculateWinner(current);
+    const winnerRows = winner ? getRowWin(current) : [] 
+    let title
+    if (winner) {
+      title = 'Winner: ' + winner;
+    } else {
+      if (isFillList(current)) {
+        title = 'It´s a tie'
+      } else {
+        title = 'Next player: ' + (state.letter ? 'X' : 'O');
+      }
     }
-    
-     
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-        positionX:positionX,
-        positionY:positionY
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+    setInfo({title, winnerRows})
+    setCurrent(current)
+  }, [state])
+
+  const handleClick = (i) => {
+    const history = state.history.slice(0, state.stepMove + 1);
+    const currents = history[history.length-1];
+    const squares = currents.squares.slice();
+    const position = getPosition(i)
+    if (calculateWinner(squares) || squares[i]) {
+     return 
+    }
+
+    squares[i] = state.letter ? 'X' : 'O';
+
+    const newState = {
+      letter: !state.letter,
+      history: history.concat([{squares:squares, position:position}]),
+      stepMove: history.length,
+    }
+    setState(newState)
   }
 
-  
-  jumpTo(step) {
-    this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0,
+  const jumpTo = (s) => {
+    const { value } = s.target;
+    setState({
+      ...state,
+      letter:(value % 2) === 0,
+      stepMove: parseInt(value,10)
     })
   }
 
-	renderDescription(move, step) {
-		let desc
-		if (move) {
-			desc = 'Go to move #' + move + " Columna: " + step.positionY + " Fila: " + step.positionX
-		} else {
-			desc = 'Go to game start';
-		}
-		if (this.state.stepNumber === move && move !== 0) {
-			return <strong>{desc}</strong>
-		} else {
-			return desc
-		}
-	}
 
-  render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];    
-    const winner = calculateWinner(current.squares);
-
-    
-    
-    const moves = history.map((step, move) => {
-		
-      	return (
-        	<li key={move}>
-          		<button onClick={() => this.jumpTo(move)}>
-          			{this.renderDescription(move, step)} 
-          		</button>
-        	</li>
-      	);
-
-    });
-
-    let status;
-    let winner_position = []
-    if (winner) {
-      status = 'Winner: ' + winner;
-      winner_position = getRowWin(current.squares)
-    } else {
-      if (isFillList(current.squares)) {
-        status = 'It´s a tie'
-      } else {
-        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-      }
-    }
-
+  const moves = state.history.map((step, move) => {
+    const desc = move ? 
+      `Go to moce #${move} in fila: ${step.position.x} row ${step.position.y}`:
+      'Go to game start';
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            winlist={winner_position}
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-        </div>
-      </div>
+      <li key={move}>
+        <button value={move} onClick={jumpTo}>
+          {(state.stepMove === move && move !== 0) ? (<strong>{desc}</strong>) : (desc)}
+        </button>
+      </li>
     );
-  }
-}
+  });
 
-// ========================================
+  
+  return (
+    <div className="game">
+
+      <div className="game-board">
+        { current ? (
+            <Board
+              winner={info.winnerRows}
+              squares={current}
+              onClick={handleClick}
+            />
+          ): "Loading..."
+          
+        }
+      </div>
+      <div className="game-info">
+        <div>{info.title}</div>
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
+}
 
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
 );
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
 
-function getRowWin(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return lines[i];
-    }
-  }
-  return null;
-}
 
-function isFillList (table) {
-  let isFill = true
-  let i = 0
-  while(isFill && i < table.length) {
-    if (table[i] === null) {
-      isFill = false
-    }
-    i++
-  }
-  return isFill
-}
 
-function setPositionY(i) {
-	if (i === 2 || i === 5 || i === 8) {
-    	return 3
-    } else if (i === 1 || i === 4 || i === 7) {
-    	return 2
-    }
-    return 1
-}
+

@@ -1,16 +1,14 @@
 import React from 'react';
 import Square from './square.js'
 
-
-class Board extends React.Component {
-  renderSquare(i) {
-    const list = this.props.winlist.slice();
-    const index = [
-      [0,1,2],
-      [3,4,5],
-      [6,7,8]
-    ]
-    const table =  (
+const Board = ({squares,onClick,winner}) => {
+  const list = winner.slice();
+  const index = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8]
+  ]
+  return (
       <div>
         {
           index.map(item => 
@@ -19,12 +17,7 @@ class Board extends React.Component {
                 item.map(it =>{
                   let classwin = list.indexOf(it) >= 0 ? "game-win" : "";
                   return (
-                    <Square
-                      key={it}
-                      winclass={classwin}
-                      value={this.props.squares[it]}
-                      onClick={() => this.props.onClick(it)}
-                    /> 
+                    <Square key={it} value={squares[it]} winner={classwin} onClick={() => onClick(it)} /> 
                   )
                 })
               }
@@ -33,12 +26,6 @@ class Board extends React.Component {
         }
       </div>
     )
-    return table
-  }
-
-  render() {
-    return (this.renderSquare());
-  }
 }
 
 export default Board;
