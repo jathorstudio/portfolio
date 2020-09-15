@@ -1,0 +1,50 @@
+.container-us {
+  background-color: #5385c1;
+  color: white;
+  padding: 3em 5em;
+  height: 50%;
+}
+.container-us .row-box-profile {
+  width: 100%;
+  margin: auto;
+}
+.container-us .row-box-profile .box-profile {
+  border: solid 1px #bebebe;
+  max-width: 22%;
+  margin: auto;
+  padding: 3em;
+}
+.container-us .row-box-profile .box-profile article {
+  padding-top: 1.5em;
+}
+.container-us .row-box-profile img {
+  border-radius: 100%;
+  width: 100%;
+}
+
+.border-text {
+  border-left: solid 1px #bebebe;
+  border-right: solid 1px #bebebe;
+}
+
+@media screen and (max-width: 768px) {
+  .box-profile {
+    max-width: 45% !important;
+    margin: 1em auto !important;
+    padding: 4em 0 !important;
+  }
+
+  .row-box-profile {
+    width: 70% !important;
+  }
+  .row-box-profile img {
+    width: 60% !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .box-profile {
+    max-width: 55% !important;
+  }
+}
+
+/*# sourceMappingURL=about.css.map */

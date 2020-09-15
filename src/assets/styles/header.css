@@ -1,0 +1,50 @@
+.banner {
+  padding: 12em 0 10em 0;
+  background-image: url("../images/banner.jpg");
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.banner2 {
+  background-image: url("../images/img_parallax3.jpg");
+  min-height: 200px;
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar-items {
+  padding: 0.5rem 5rem !important;
+  top: 2em !important;
+  background-color: transparent !important;
+  margin: 0 3em !important;
+  transition: top 0.5s, padding 0.5s;
+}
+.navbar-items a {
+  color: white !important;
+}
+
+.navbartop {
+  padding: 0.5rem 3rem !important;
+  top: 0 !important;
+  margin: 0 !important;
+  background: white !important;
+  transition: top 0.5s, padding 0.5s;
+}
+.navbartop a {
+  color: black !important;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-items {
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+/*# sourceMappingURL=header.css.map */

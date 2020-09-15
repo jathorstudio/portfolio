@@ -1,0 +1,28 @@
+.project-img img {
+  width: 100%;
+}
+
+.container-project {
+  padding-top: 3em;
+}
+.container-project article {
+  padding-top: 2em;
+}
+
+footer {
+  padding-top: 2em;
+}
+
+.icons {
+  display: inline-flex;
+  list-style: none;
+  float: right;
+}
+.icons a {
+  font-size: 2em;
+}
+.icons li {
+  padding-right: 3em;
+}
+
+/*# sourceMappingURL=projects.css.map */
