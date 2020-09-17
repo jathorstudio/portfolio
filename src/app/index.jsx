@@ -51,9 +51,6 @@ const App = () => {
 					"Loading..."}
 				</Row>
 			</Container>
-			<div className="banner2">
-				
-			</div>
 			<About/>
 			<Container className="container-project title-post container-division">
 				<Row className="text-center">

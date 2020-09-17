@@ -50,12 +50,18 @@ const About = () => {
 						classname=""
 							alt={person.alt}
 						/>
+						<div className="box-content"></div>
+						<div className="box-text">
+							Welcome to my bio, GG
+						</div>
 						<Article 
 							title={person.title}
 							content={person.content}
 						/>
 					</Col>
+						
 				))}
+
 			</Row>
 		</Container>
 	);

@@ -1,6 +1,11 @@
 @import url(font-awesome.min.css);
+@font-face {
+  font-family: RobotoCondensed;
+  src: url("../fonts/RobotoCondensed-Light.ttf");
+}
 body {
   font-size: 100%;
+  font-family: RobotoCondensed;
 }
 
 h1 {
