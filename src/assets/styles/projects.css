@@ -1,0 +1,47 @@
+.project-img img {
+  width: 100%;
+}
+
+.container-project {
+  padding-top: 3em;
+}
+.container-project article {
+  padding-top: 2em;
+}
+
+footer {
+  padding-top: 2em;
+}
+
+.icons {
+  display: inherit;
+  list-style: none;
+  float: left;
+  position: fixed;
+  top: 30%;
+}
+.icons a {
+  font-size: 2em;
+  color: black;
+}
+.icons a :hover {
+  color: #75e3e2;
+}
+.icons li {
+  padding-right: 3em;
+}
+
+@media screen and (max-width: 576px) {
+  footer div {
+    width: 50%;
+    margin: 0 auto;
+    max-width: 50%;
+  }
+
+  .icons {
+    position: relative;
+    display: inline-flex;
+  }
+}
+
+/*# sourceMappingURL=projects.css.map */
