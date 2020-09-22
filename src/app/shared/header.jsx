@@ -32,6 +32,7 @@ const Header = () => {
 	return (
 		<div>
 			<Navbar expand="md" fixed="top" className={`navbar-items ${isScroll ? "navbartop": ""}`} >
+			  <Navbar.Brand href="#home"><img width="48px" height='auto' src={require("../../assets/images/js.png")}/></Navbar.Brand>
 			  <Navbar.Toggle aria-controls="basic-navbar-nav" />
 			  <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
 			    <Nav >
