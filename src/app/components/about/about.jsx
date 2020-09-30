@@ -5,24 +5,17 @@ import Col from 'react-bootstrap/Col';
 import Article from '../../shared/article'
 import Image from '../../shared/images'
 import '../../../assets/styles/about.css'
+import Footer from '../../shared/footer'
 
 const persons = [
 	{
-		title: "Magna",
-		content: "Cipdum dolor",
+		title: "Danielis Gazcón",
+		content: "Graphic Designer",
 		img: require("../../../assets/images/pic03.jpg")
 	},{
-		title: "Ipsum",
-		content: "Vestibulum comm",
-		img: require("../../../assets/images/pic04.jpg")
-	},{
-		title: "Tempus",
-		content: "Fusce pellentes",
-		img: require("../../../assets/images/pic05.jpg")
-	},{
-		title: "Dolore",
-		content: "Praesent placer",
-		img: require("../../../assets/images/pic06.jpg")
+		title: "Daniel Gazcón",
+		content: "Full Stack Developer",
+		img: require("../../../assets/images/yo_perfil.png")
 	}
 ]
 
@@ -38,8 +31,7 @@ const About = () => {
 		<Container className="container-us" fluid>
 			<Row className="text-center">
 				<Col lg={{ span: 4, offset: 4 }}>
-					<h2>Ipsum Feugiat</h2>
-					<p>Semper suscipit posuere apede</p>
+					<h2>Nosotros</h2>
 				</Col>
 			</Row>
 			<Row className="text-center row-box-profile">
@@ -52,7 +44,12 @@ const About = () => {
 						/>
 						<div className="box-content"></div>
 						<div className="box-text">
-							Welcome to my bio, GG
+							<Footer
+								ig="https://www.instagram.com/dgazcon/"
+								twitter="https://www.twitter.com/dgazcon/"
+								linkedin="https://www.linkedin.com/in/dgazcon/"
+								classname="icons us-icons"
+							/>
 						</div>
 						<Article 
 							title={person.title}

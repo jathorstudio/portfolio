@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   text-align: center;
 }
-.banner h1, .banner p {
+.banner h1, .banner h3, .banner p {
   color: white;
 }
 
@@ -41,6 +41,10 @@
 }
 .navbartop a {
   color: black !important;
+}
+
+.icon {
+  font-size: 3em;
 }
 
 @media screen and (max-width: 768px) {

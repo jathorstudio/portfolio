@@ -1,15 +1,20 @@
+import { faPenNib, faLaptopCode, faTasks } from '@fortawesome/free-solid-svg-icons'
+
 export const posts = () => ([
 	{
 		id:1,
-		title: "Magna tempus sed amet aliquam veroeros",
+		title: "Diseño",
+		icon: faPenNib,
 		content: "Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu."
 	},{
 		id:2,
-		title: "Interdum lorem pulvinar adipiscing vitae",
+		title: "Desarrollo",
+		icon: faLaptopCode,
 		content: "Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu."
 	},{
 		id:3,
-		title: "Libero purus magna sapien sed ullamcorper",
+		title: "Brand",
+		icon: faTasks,
 		content: "Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu."
 	}
 ]);

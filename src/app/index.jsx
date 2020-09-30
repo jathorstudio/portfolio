@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import About from './components/about/about';
 
@@ -12,6 +13,7 @@ import Image from './shared/images';
 import { posts } from '../helpers/data';
 import '../assets/styles/post.css'
 import '../assets/styles/projects.css'
+
 
 const projects = [
 	{
@@ -40,7 +42,10 @@ const App = () => {
 						post.map((item, i) => 
 						{
 							let contentclass = (i+1)%2===0 ? "border-text" : "";
-							return (<Col md={4} lg={4} key={i} className={`${contentclass} title-post`}>
+							return (<Col md={4} lg={4} key={i} className={`${contentclass} title-post center-text`}>
+								<div className="icon">
+									<FontAwesomeIcon icon={item.icon} />
+								</div>
 								<Article
 									title={item.title}
 									content={item.content}
@@ -55,8 +60,8 @@ const App = () => {
 			<Container className="container-project title-post container-division">
 				<Row className="text-center">
 					<Col lg={{ span: 4, offset: 4 }}>
-						<h2>Ipsum Feugiat</h2>
-						<p>Semper suscipit posuere apede</p>
+						<h2>Nuestros projectos</h2>
+						<br/>
 					</Col>
 				</Row>
 				<Row className="text-center">
@@ -75,10 +80,15 @@ const App = () => {
 					))}
 				</Row>
 			</Container>
-			<Footer/>
+			<Footer
+				ig="https://www.instagram.com/jathorstudio/"
+				twitter="https://twitter.com/dgazcon"
+				classname="icons"
+			/>
 			
 		</div>
 	);
 }
+
 
 export default App;

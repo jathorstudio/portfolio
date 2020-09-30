@@ -31,6 +31,15 @@ footer {
   padding-right: 3em;
 }
 
+.us-icons {
+  display: inline-flex;
+  padding: 1em;
+  position: relative;
+}
+.us-icons li {
+  padding: 0.5em;
+}
+
 @media screen and (max-width: 576px) {
   footer div {
     width: 50%;

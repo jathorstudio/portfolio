@@ -43,7 +43,7 @@ const Header = () => {
 			</Navbar>
 			<section className="banner">
 				<h1>JathorStudio</h1>
-				<p>A free responsive HTML5 website template by TEMPLATED.</p>
+				<h3>Diseño Digital, Gestion de RRSS, Desarrollo Web</h3>
 			</section>
 
 		</div>
